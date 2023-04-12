@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue tutorial</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <!-- nav-link-click : arrow function, component의 data 변경을 부모가 감지할 수 없음 -->
+    <!-- 따라서 부모가 함수를 넘겨주고 자식의 data를 받아 변수에 할당-->
+    <navbar
+        :pages="pages"
+        :active-page="activePage"
+        :use-dark-nav-bar="useDarkNavBar"
+        :nav-link-click="(index) => activePage = index"
+    >
+    </navbar>
+
+    <page-viewer 
+        :page="pages[activePage]" 
+    >
+    </page-viewer>
+    
+    <script>
+        let app = Vue.createApp({
+            data() {
+                return {
+                    activePage: 0,
+                    useDarkNavBar: true,
+                    pages: [
+                        {
+                            link: {text: 'Home', url: 'index.html'},
+                            pageTitle: 'Vue tutorial -> Home',
+                            content: 'This is vue tutorial Home page'
+                        },
+                        {
+                            link: {text: 'About', url: 'about.html'},
+                            pageTitle: 'Vue tutorial -> About',
+                            content: 'This is vue tutorial About page'
+                        },
+                        {
+                            link: {text: 'Contact', url: 'contact.html'},
+                            pageTitle: 'Vue tutorial -> Contact',
+                            content: 'This is vue tutorial Contact page'
+                        },
+                    ]
+                }
+            },
+        })
+        
+        // app보다 더 작은 단위 (component)로 분리
+        app.component('page-viewer', {
+            props: ['page'],
+            template: `
+            <div class="container">
+                <h1>{{page.pageTitle}}</h1>
+                <p>{{page.content}}</p>
+            </div>
+            `
+        })
+
+        app.component('navbar', {
+            props: ['pages', 'activePage', 'useDarkNavBar', 'navLinkClick'],
+            template: `
+            <nav 
+                class="navbar navbar-expand-lg"
+                :class="navbarClasses" 
+            >
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li v-for="(page, index) in pages" class="nav-item" :key="index">
+                        <a 
+                            class="nav-link" 
+                            :class="{active: activePage == index}"
+                            :href="page.link.url"
+                            :title="\`This link goes to the \${page.link.text} page\`"
+                            @click.prevent="navLinkClick(index)"
+                        >{{ page.link.text }}</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <button 
+                        class="btn btn-primary" 
+                        @click.prevent="useDarkNavBar = !useDarkNavBar"
+                    >Toggle Nav Bar</button>
+                </form>
+                </div>
+            </nav>
+            `,
+            computed: {
+                navbarClasses() {
+                    return {
+                        'navbar-light bg-light': !this.useDarkNavBar, 
+                        'navbar-dark bg-dark': this.useDarkNavBar
+                    }
+                }
+            }
+        })
+
+        app.mount('body')
+    </script>
+</body>
+</html>
