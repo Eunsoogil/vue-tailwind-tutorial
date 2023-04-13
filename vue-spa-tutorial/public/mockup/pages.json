@@ -1,20 +1,20 @@
 [
     {
-        "link": {"text": "Home", "url": "index.html"},
-        "pageTitle": "Home",
-        "content": "This is vue Home page",
+        "link": {"text": "page 1", "url": "1.html"},
+        "pageTitle": "page 1",
+        "content": "This is page 1",
         "published": true
     },
     {
-        "link": {"text": "About", "url": "about.html"},
-        "pageTitle": "About",
-        "content": "This is vue About page",
+        "link": {"text": "page 2", "url": "2.html"},
+        "pageTitle": "page 2",
+        "content": "This is page 2",
         "published": true
     },
     {
-        "link": {"text": "Contact", "url": "contact.html"},
-        "pageTitle": "Contact",
-        "content": "This is vue Contact page",
+        "link": {"text": "page 3", "url": "3.html"},
+        "pageTitle": "page 3",
+        "content": "This is page 3",
         "published": false
     }
 ]

@@ -4,10 +4,12 @@ import CreatePage from './views/CreatePage.vue'
 import Pages from './views/Pages.vue'
 import PagesList from './views/PagesList.vue'
 import PageEdit from './views/PageEdit.vue'
+import PageHome from './views/PageHome.vue'
 
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
+        { path: '/', component: PageHome},
         { path: '/:index?', component: PageViewer, props: true },
         { 
             path: '/pages', 

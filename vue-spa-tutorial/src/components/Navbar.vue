@@ -3,13 +3,20 @@
         class="navbar navbar-expand-lg d-flex"
         :class="navbarClasses" 
     >
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
     
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
+                <li>
+                    <router-link 
+                    to="/pages"
+                    class="nav-link" 
+                    active-class="active"
+                    >Pages Management</router-link >
+                </li>
                 <template
                     v-for="(page, index) in getPages"
                 >
@@ -20,19 +27,16 @@
                     >
                     </navbar-link>
                 </template>
-                <li>
-                    <router-link 
-                    to="/pages"
-                    class="nav-link" 
-                    active-class="active"
-                    >Pages</router-link >
-                </li>
             </ul>
             <form class="d-flex">
                 <button 
-                    class="btn btn-primary" 
+                    class="btn btn-primary me-3" 
                     @click.prevent="useDarkNavBar = !useDarkNavBar"
-                >Toggle Nav Bar</button>
+                >{{ !useDarkNavBar? 'dark mode ?' : 'dark mode !' }}</button>
+                <button 
+                    class="btn btn-danger" 
+                    @click.prevent="sendLogOutEvent"
+                >Log out</button>
             </form>
         </div>
     </nav>
@@ -61,6 +65,11 @@ export default {
     data() {
         return {
             pages: []
+        }
+    },
+    methods: {
+        sendLogOutEvent() {
+            this.$bus.$emit('logout', true)
         }
     },
     created() {
