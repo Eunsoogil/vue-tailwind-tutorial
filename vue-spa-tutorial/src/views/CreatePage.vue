@@ -93,6 +93,7 @@ function goToPageList() {
 
 const isFormInvalid = computed(() => !pageTitle || !content || !linkText)
 
+// watch : if data change, then function will start
 watch(pageTitle, (newTitle, oldTitle) => {
     if (linkText.value === oldTitle) {
         linkText.value = newTitle

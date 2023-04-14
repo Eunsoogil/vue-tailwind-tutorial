@@ -40,6 +40,8 @@
 import { inject, ref } from 'vue';
 const bus = inject('$bus')
 
+// if you want to interact with vue data in SFC then use ref function
+// in this case, this will be bind with username and password at v-model
 let username = ref('')
 let password = ref('')
 

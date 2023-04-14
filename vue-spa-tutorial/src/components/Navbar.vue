@@ -14,6 +14,7 @@
             </button>
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <!-- active-class : vue-router property, if this component active, pass class you declared -->
                     <li>
                         <router-link 
                         to="/"
@@ -56,14 +57,7 @@ export default {
         NavbarLink
     },
     inject: ['$pages', '$bus'],
-    props: ['useDarkNavBar'],
     computed: {
-        navbarClasses() {
-            return {
-                'navbar-light bg-light': !this.useDarkNavBar, 
-                'navbar-dark bg-dark': this.useDarkNavBar
-            }
-        },
         getPages() {
             return this.pages
         }
@@ -80,6 +74,8 @@ export default {
     },
     created() {
         this.pages = this.$pages.getAllpages()
+
+        // handle data event
         this.$bus.$on('page-updated', () => {
             // this.pages = this.$pages.getAllpages()
             // give new array
@@ -95,6 +91,7 @@ export default {
 }
 </script>
 
+<!-- scoped option : only using in this component -->
 <style scoped>
 .emphasize {
     text-decoration: underline !important;

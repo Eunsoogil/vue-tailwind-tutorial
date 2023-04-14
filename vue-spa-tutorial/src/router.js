@@ -7,9 +7,12 @@ import PageEdit from './views/PageEdit.vue'
 import PageHome from './views/PageHome.vue'
 
 const router = createRouter({
+    // to use # at url, not recommended
+    // # will not provide to server
     history: createWebHashHistory(),
     routes: [
         { path: '/', component: PageHome},
+        // props true -> send url parameters inside component
         { path: '/:index?', component: PageViewer, props: true },
         { 
             path: '/pages', 

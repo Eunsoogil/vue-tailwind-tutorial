@@ -1,3 +1,6 @@
+// implement data handle function together
+// it is good for using API handling and using each components
+
 const pagesKey = 'pages'
 
 let pageJson = localStorage.getItem(pagesKey)

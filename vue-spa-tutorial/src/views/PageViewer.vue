@@ -13,10 +13,6 @@ export default {
     props: ['index'],
     inject: ['$pages'],
     created() {
-        // this.page = this.$pages.getSinglePage(this.$route.params.index)
-        // this.$watch(() => this.$route.params, (newParams, prevParams) => {
-        //     this.page = this.$pages.getSinglePage(newParams.index)
-        // })
         this.page = this.$pages.getSinglePage(this.index)
     },
     data() {

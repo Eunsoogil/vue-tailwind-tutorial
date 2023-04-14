@@ -1,3 +1,6 @@
+// implement just like vue 2 code
+// vue 3 no more provide this function
+
 const events = new Map()
 
 export default {

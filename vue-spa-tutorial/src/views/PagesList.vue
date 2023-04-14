@@ -43,10 +43,11 @@
 
 </template>
 
+<!-- you can use vue component as single template. (SRC : Single File Component) 
+    which means this component not communicate another component  -->
+
 <script setup>
-// ref : literal variable
-// reactive : object
-import {ref, reactive, inject} from 'vue'
+import { inject } from 'vue'
 import { useRouter } from 'vue-router';
 
 const $pages = inject('$pages')
