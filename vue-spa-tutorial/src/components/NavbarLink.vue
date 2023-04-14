@@ -20,5 +20,6 @@ export default {
 <style scoped>
 .emphasize {
     text-decoration: underline !important;
+    color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 </style>

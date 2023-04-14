@@ -1,6 +1,8 @@
 <template>
-    <div v-if="page" class="container">
-        <h1>{{page.pageTitle}}</h1>
+    <div v-if="page" class="ml-3 mb-5 mt-5">
+        <div class="text-4xl mb-3">
+            <span>{{page.pageTitle}}</span>
+        </div>
         <p>{{page.content}}</p>
     </div>
 </template>

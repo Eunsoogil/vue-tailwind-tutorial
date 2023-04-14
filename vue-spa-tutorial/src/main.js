@@ -1,6 +1,6 @@
 import {createApp, VueElement} from 'vue'
 import App from './App.vue'
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
+// import '../node_modules/bootstrap/dist/css/bootstrap.css'
 // import './assets/output.css'
 import $bus from './utils/event'
 import router from './router'
