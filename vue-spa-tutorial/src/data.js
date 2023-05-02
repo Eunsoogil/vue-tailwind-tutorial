@@ -4,7 +4,21 @@
 const pagesKey = 'pages'
 
 let pageJson = localStorage.getItem(pagesKey)
-let pagesStore = JSON.parse(pageJson)
+let pagesStore = {}
+
+if (pageJson === null) {
+    fetch('/mockup/pages.json')
+        .then((response) => response.json())
+        .then((data) => {
+            localStorage.setItem(
+                pagesKey, JSON.stringify(data)
+            )
+            pageJson = localStorage.getItem(pagesKey)
+            pagesStore = JSON.parse(pageJson)
+        })
+} else {
+    pagesStore = JSON.parse(pageJson)
+}
 
 function save() {
     localStorage.setItem(pagesKey, JSON.stringify(pagesStore))
